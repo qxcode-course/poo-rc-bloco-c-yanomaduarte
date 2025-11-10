@@ -1,0 +1,9 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-06_15-09-08",
+            "content": "class Person:\n    def __init__(self, name: str):\n        self.__name = name\n\n    def getName(self) -> str:\n        return self.__name\n\n    def setName(self, name: str):\n        return self.__name\n\n    def __str__(self):\n        return f\"{self.__name}\"\n\nclass Market:\n    def __init__(self, name: str, counters: str):\n        self.__name = name\n        self.counters = [None] * qtd_counters\n\n    self.waiting = []\n\n    ",
+            "lines": "21"
+        }
+    ]
+}
