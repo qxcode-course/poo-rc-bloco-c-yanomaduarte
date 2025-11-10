@@ -12,8 +12,23 @@
         },
         {
             "label": "2025-11-10_09-17-37",
-            "content": "class Person:\n    def __init__(self, name: str):\n        self.__name = name\n\n    def getName(self) -> str:\n        return self.__name\n\n    def setName(self, name: str):\n        return self.__name\n\n    def __str__(self):\n        return self.__name",
+            "content": "@@ -243,515 +243,4 @@\n name\n-%0A%0A%0Aclass Market:%0A    def __init__(self, name: str, counters: str):%0A        self.counter = %5BNone for i in range(counters)%5D%0A        self.queue = %5B%5D%0A%0A    def __str__(self):%0A        box_str = %22, %22.join(%0A            str(person) if person is not None else %22-----%22%0A            for person in self.__box%0A        )%0A        queue_str = %22, %22.join(str(person) for person in self.__queue)%0A        return f%22Caixas: %5B%7Bbox_str%7D%5D%5CnEspera: %5B%7Bqueue_str%7D%5D%22%0A%0A    def arrive(self, person: Person):%0A        self.__queue.append(person)%0A\n",
             "lines": "12"
+        },
+        {
+            "label": "2025-11-10_10-36-22",
+            "content": "@@ -754,236 +754,4 @@\n on)%0A\n-%0A    def call(self, index: int):%0A        if len(self.__queue) == 0:%0A            print(%22fail: n%C3%A3o h%C3%A1 clientes%22)%0A            return%0A        if self.__box%5Bindex%5D is not None:%0A            print(%22fail: caixa ocupado%22)%0A            return%0A\n",
+            "lines": "29"
+        },
+        {
+            "label": "2025-11-10_10-39-58",
+            "content": "@@ -390,105 +390,8 @@\n %5B%5D%0A%0A\n-    def validateIndex(self, index: int) -%3E bool:%0A        return 0 %3C= index %3C len(self.counters)%0A%0A\n     \n@@ -986,351 +986,4 @@\n urn%0A\n-%0A    def finish(self, index: int):%0A        if not self.validateIndex(index):%0A            print(%22fail: caixa inexistente%22)%0A            return None%0A        if self.counters%5Bindex%5D is None:%0A            print(%22fail: caixa vazio%22)%0A            return None%0A%0A        person = self.counters%5Bindex%5D%0A        self.counters%5Bindex%5D = None%0A        return person%0A\n",
+            "lines": "37"
+        },
+        {
+            "label": "2025-11-10_10-46-00",
+            "content": "class Person:\n    def __init__(self, name: str):\n        self.__name = name\n\n    def getName(self) -> str:\n        return self.__name\n\n    def setName(self, name: str):\n        return self.__name\n\n    def __str__(self):\n        return self.__name\n\n\nclass Market:\n    def __init__(self, name: str, counters: str):\n        self.counter = [None for i in range(counters)]\n        self.queue = []\n\n    def validateIndex(self, index: int) -> bool:\n        return 0 <= index < len(self.counters)\n\n    def __str__(self):\n        box_str = \", \".join(\n            str(person) if person is not None else \"-----\"\n            for person in self.__box\n        )\n        queue_str = \", \".join(str(person) for person in self.__queue)\n        return f\"Caixas: [{box_str}]\\nEspera: [{queue_str}]\"\n\n    def arrive(self, person: Person):\n        self.__queue.append(person)\n\n    def call(self, index: int):\n        if len(self.__queue) == 0:\n            print(\"fail: n\u00e3o h\u00e1 clientes\")\n            return\n        if self.__box[index] is not None:\n            print(\"fail: caixa ocupado\")\n            return\n\n    def finish(self, index: int):\n        if not self.validateIndex(index):\n            print(\"fail: caixa inexistente\")\n            return None\n        if self.counters[index] is None:\n            print(\"fail: caixa vazio\")\n            return None\n\n        person = self.counters[index]\n        self.counters[index] = None\n        return person\n",
+            "lines": "52"
         }
     ]
 }
