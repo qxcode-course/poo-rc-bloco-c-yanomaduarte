@@ -27,8 +27,28 @@
         },
         {
             "label": "2025-11-10_10-46-00",
-            "content": "class Person:\n    def __init__(self, name: str):\n        self.__name = name\n\n    def getName(self) -> str:\n        return self.__name\n\n    def setName(self, name: str):\n        return self.__name\n\n    def __str__(self):\n        return self.__name\n\n\nclass Market:\n    def __init__(self, name: str, counters: str):\n        self.counter = [None for i in range(counters)]\n        self.queue = []\n\n    def validateIndex(self, index: int) -> bool:\n        return 0 <= index < len(self.counters)\n\n    def __str__(self):\n        box_str = \", \".join(\n            str(person) if person is not None else \"-----\"\n            for person in self.__box\n        )\n        queue_str = \", \".join(str(person) for person in self.__queue)\n        return f\"Caixas: [{box_str}]\\nEspera: [{queue_str}]\"\n\n    def arrive(self, person: Person):\n        self.__queue.append(person)\n\n    def call(self, index: int):\n        if len(self.__queue) == 0:\n            print(\"fail: n\u00e3o h\u00e1 clientes\")\n            return\n        if self.__box[index] is not None:\n            print(\"fail: caixa ocupado\")\n            return\n\n    def finish(self, index: int):\n        if not self.validateIndex(index):\n            print(\"fail: caixa inexistente\")\n            return None\n        if self.counters[index] is None:\n            print(\"fail: caixa vazio\")\n            return None\n\n        person = self.counters[index]\n        self.counters[index] = None\n        return person\n",
+            "content": "@@ -1356,17 +1356,22 @@\n elf.\n-__queue%5B0\n+counters%5Bindex\n %5D%0A  \n@@ -1385,76 +1385,49 @@\n elf.\n-__queue = self.__queue%5B1:%5D%0A        self.__box%5Bindex%5D = person%0A        %0A\n+counters%5Bindex%5D = None%0A        return person\n %0A\n",
             "lines": "52"
+        },
+        {
+            "label": "2025-11-10_20-34-54",
+            "content": "@@ -166,38 +166,38 @@\n r):%0A        \n+return \n self.__\n-name = \n name%0A%0A    de\n@@ -319,23 +319,23 @@\n    self.\n-__boxes\n+counter\n  = %5BNone\n@@ -366,34 +366,32 @@\n )%5D%0A        self.\n-__\n queue = %5B%5D%0A%0A    \n@@ -476,14 +476,15 @@\n elf.\n-__boxe\n+counter\n s)%0A%0A\n@@ -1438,8 +1438,18 @@\n  person%0A\n+        %0A%0A\n",
+            "lines": "54"
+        },
+        {
+            "label": "2025-11-10_20-42-11",
+            "content": "@@ -885,114 +885,8 @@\n t):%0A\n-        if not self.validateIndex(index):%0A            print(%22fail: caixa inexistente%22)%0A            return%0A\n     \n@@ -916,16 +916,16 @@\n ) == 0:%0A\n+\n         \n@@ -991,34 +991,32 @@\n    if self.__box\n-es\n %5Bindex%5D is not N\n@@ -1085,119 +1085,8 @@\n rn%0A%0A\n-        person = self.__queue%5B0%5D%0A        self.__queue = self.__queue%5B1:%5D%0A        self.__boxes%5Bindex%5D = person%0A%0A\n     \n@@ -1355,27 +1355,23 @@\n  self.__\n-boxes%5Bindex\n+queue%5B0\n %5D%0A      \n@@ -1383,72 +1383,64 @@\n f.__\n-boxes%5Bindex%5D = None%0A        return person%0A%0A    def cutInLine(self)%0A\n+queue = self.__queue%5B1:%5D%0A        self.__box%5Bindex%5D = person\n %0A\n",
+            "lines": "52"
+        },
+        {
+            "label": "2025-11-10_20-56-42",
+            "content": "@@ -1668,11 +1668,10 @@\n ne(self)\n-:\n %0A%0A\n",
+            "lines": "62"
+        },
+        {
+            "label": "2025-11-10_20-56-50",
+            "content": "class Person:\n    def __init__(self, name: str):\n        self.__name = name\n\n    def getName(self) -> str:\n        return self.__name\n\n    def setName(self, name: str):\n        self.__name = name\n\n    def __str__(self):\n        return self.__name\n\n\nclass Market:\n    def __init__(self, name: str, counters: str):\n        self.__boxes = [None for i in range(counters)]\n        self.__queue = []\n\n    def validateIndex(self, index: int) -> bool:\n        return 0 <= index < len(self.__boxes)\n\n    def __str__(self):\n        box_str = \", \".join(\n            str(person) if person is not None else \"-----\"\n            for person in self.__box\n        )\n        queue_str = \", \".join(str(person) for person in self.__queue)\n        return f\"Caixas: [{box_str}]\\nEspera: [{queue_str}]\"\n\n    def arrive(self, person: Person):\n        self.__queue.append(person)\n\n    def call(self, index: int):\n        if not self.validateIndex(index):\n            print(\"fail: caixa inexistente\")\n            return\n        if len(self.__queue) == 0:\n            print(\"fail: n\u00e3o h\u00e1 clientes\")\n            return\n        if self.__boxes[index] is not None:\n            print(\"fail: caixa ocupado\")\n            return\n\n        person = self.__queue[0]\n        self.__queue = self.__queue[1:]\n        self.__boxes[index] = person\n\n    def finish(self, index: int):\n        if not self.validateIndex(index):\n            print(\"fail: caixa inexistente\")\n            return None\n        if self.counters[index] is None:\n            print(\"fail: caixa vazio\")\n            return None\n\n        person = self.__boxes[index]\n        self.__boxes[index] = None\n        return person\n\n    def cutInLine(self):\n\n",
+            "lines": "62"
         }
     ]
 }

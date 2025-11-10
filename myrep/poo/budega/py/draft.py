@@ -6,7 +6,7 @@ class Person:
         return self.__name
 
     def setName(self, name: str):
-        return self.__name
+        self.__name = name
 
     def __str__(self):
         return self.__name
@@ -14,11 +14,11 @@ class Person:
 
 class Market:
     def __init__(self, name: str, counters: str):
-        self.counter = [None for i in range(counters)]
-        self.queue = []
+        self.__boxes = [None for i in range(counters)]
+        self.__queue = []
 
     def validateIndex(self, index: int) -> bool:
-        return 0 <= index < len(self.counters)
+        return 0 <= index < len(self.__boxes)
 
     def __str__(self):
         box_str = ", ".join(
@@ -32,12 +32,19 @@ class Market:
         self.__queue.append(person)
 
     def call(self, index: int):
+        if not self.validateIndex(index):
+            print("fail: caixa inexistente")
+            return
         if len(self.__queue) == 0:
             print("fail: não há clientes")
             return
-        if self.__box[index] is not None:
+        if self.__boxes[index] is not None:
             print("fail: caixa ocupado")
             return
+
+        person = self.__queue[0]
+        self.__queue = self.__queue[1:]
+        self.__boxes[index] = person
 
     def finish(self, index: int):
         if not self.validateIndex(index):
@@ -47,6 +54,9 @@ class Market:
             print("fail: caixa vazio")
             return None
 
-        person = self.counters[index]
-        self.counters[index] = None
+        person = self.__boxes[index]
+        self.__boxes[index] = None
         return person
+
+    def cutInLine(self):
+        
