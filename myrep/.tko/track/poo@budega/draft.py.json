@@ -2,8 +2,18 @@
     "patches": [
         {
             "label": "2025-11-06_15-09-08",
-            "content": "class Person:\n    def __init__(self, name: str):\n        self.__name = name\n\n    def getName(self) -> str:\n        return self.__name\n\n    def setName(self, name: str):\n        return self.__name\n\n    def __str__(self):\n        return f\"{self.__name}\"\n\nclass Market:\n    def __init__(self, name: str, counters: str):\n        self.__name = name\n        self.counters = [None] * qtd_counters\n\n    self.waiting = []\n\n    ",
+            "content": "@@ -220,32 +220,35 @@\n %0A        return \n+f%22%7B\n self.__name%0A%0Acla\n@@ -242,16 +242,18 @@\n f.__name\n+%7D%22\n %0A%0Aclass \n@@ -327,232 +327,90 @@\n elf.\n-counter = %5BNone for i in range(counters)%5D%0A%0A        self.waiting = %5B%5D%0A%0A    def __str__(self):%0A        box_str = %22, %22.join(%0A            str(person) if person is not None else %22-----%22%0A            for person in self.__%0A        )\n+__name = name%0A        self.counters = %5BNone%5D * qtd_counters%0A%0A    self.waiting = %5B%5D\n %0A%0A  \n",
             "lines": "21"
+        },
+        {
+            "label": "2025-11-10_08-49-25",
+            "content": "@@ -219,28 +219,337 @@\n :%0A        return self.__name\n+%0A%0Aclass Market:%0A    def __init__(self, name: str, counters: str):%0A        self.counter = %5BNone for i in range(counters)%5D%0A%0A        self.waiting = %5B%5D%0A%0A    def __str__(self):%0A        box_str = %22, %22.join(%0A            str(person) if person is not None else %22-----%22%0A            for person in self.__%0A        )%0A%0A    \n",
+            "lines": "26"
+        },
+        {
+            "label": "2025-11-10_09-17-37",
+            "content": "class Person:\n    def __init__(self, name: str):\n        self.__name = name\n\n    def getName(self) -> str:\n        return self.__name\n\n    def setName(self, name: str):\n        return self.__name\n\n    def __str__(self):\n        return self.__name",
+            "lines": "12"
         }
     ]
 }
