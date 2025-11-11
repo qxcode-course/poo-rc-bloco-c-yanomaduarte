@@ -13,20 +13,19 @@ class Person:
 
 
 class Market:
-    def __init__(self, name: str, counters: str):
-        self.__boxes = [None for i in range(counters)]
+    def __init__(self, qtd: int):
+        self.__boxes = [None for i in range(qtd)]
         self.__queue = []
 
     def validateIndex(self, index: int) -> bool:
         return 0 <= index < len(self.__boxes)
 
     def __str__(self):
-        box_str = ", ".join(
-            str(person) if person is not None else "-----"
-            for person in self.__box
-        )
-        queue_str = ", ".join(str(person) for person in self.__queue)
-        return f"Caixas: [{box_str}]\nEspera: [{queue_str}]"
+        boxes_str = "[" + ", ".join(
+            c.getName() if c is not None else "-----" for c in self.__boxes
+        ) + "]"
+        queue_str = "[" + ", ".join(p.getName() for p in self.__queue) + "]"
+        return f"Caixas: {boxes_str}\nEspera: {queue_str}"
 
     def arrive(self, person: Person):
         self.__queue.append(person)
@@ -36,7 +35,7 @@ class Market:
             print("fail: caixa inexistente")
             return
         if len(self.__queue) == 0:
-            print("fail: não há clientes")
+            print("fail: sem clientes")
             return
         if self.__boxes[index] is not None:
             print("fail: caixa ocupado")
@@ -50,7 +49,7 @@ class Market:
         if not self.validateIndex(index):
             print("fail: caixa inexistente")
             return None
-        if self.counters[index] is None:
+        if self.__boxes[index] is None:
             print("fail: caixa vazio")
             return None
 
@@ -58,5 +57,78 @@ class Market:
         self.__boxes[index] = None
         return person
 
-    def cutInLine(self):
-        
+    def cutInLine(self, person: Person, otherName: str):
+        found = False
+        new_queue = []
+        for p in self.__queue:
+            if p.getName() == otherName and not found:
+                new_queue.append(person)
+                found = True
+            new_queue.append(p)
+        if not found:
+            new_queue.append(person)
+        self.__queue = new_queue
+
+    def giveUp(self, name: str):
+        new_queue = []
+        removed = False
+        for p in self.__queue:
+            if p.getName() == name and not removed:
+                removed = True
+                continue
+            new_queue.append(p)
+        if not removed:
+            print("fail: cliente não encontrado")
+        self.__queue = new_queue
+
+
+def main():
+    market = None
+
+    while True:
+        line = input()
+        print(f"${line}")
+        args = line.split()
+
+        if len(args) == 0:
+            continue
+
+        cmd = args[0]
+
+        if cmd == "end":
+            break
+
+        elif cmd == "init":
+            qtd = int(args[1])
+            market = Market(qtd)
+
+        elif cmd == "show":
+            print(market)
+
+        elif cmd == "arrive":
+            name = args[1]
+            market.arrive(Person(name))
+
+        elif cmd == "call":
+            index = int(args[1])
+            market.call(index)
+
+        elif cmd == "finish":
+            index = int(args[1])
+            person = market.finish(index)
+
+        elif cmd == "cut":
+            name = args[1]
+            otherName = args[2]
+            market.cutInLine(Person(name), otherName)
+
+        elif cmd == "giveup":
+            name = args[1]
+            market.giveUp(name)
+
+        else:
+            print("fail: comando inválido")
+
+
+if __name__ == "__main__":
+    main()
