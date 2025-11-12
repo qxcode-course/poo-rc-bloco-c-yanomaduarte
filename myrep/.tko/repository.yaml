@@ -12,7 +12,7 @@ sources:
   type: clone
   branch: master
   cache_path: /home/yanduarte/poo-rc-bloco-c-yanomaduarte/myrep/.tko/cache/poo/Readme.md
-  cache_timestamp: '2025-11-12 10:49:18'
+  cache_timestamp: '2025-11-12 20:33:26'
   filters:
   - listas
 expanded:
@@ -20,7 +20,7 @@ expanded:
 - poo@bloco_c-listas
 tasks:
   poo@budega: '{rate:100, guide:_, alone:8, study:300}'
-  poo@lapiseira: '{rate:7}'
+  poo@lapiseira: '{rate:100, guide:_, alone:8, study:330}'
 flags:
   quests: 0
   tracks: 0
