@@ -1,0 +1,24 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-12_10-49-39",
+            "content": "@@ -456,14 +456,13 @@\n et(self)\n-:\n %0A    \n",
+            "lines": "20"
+        },
+        {
+            "label": "2025-11-12_10-49-46",
+            "content": "@@ -460,387 +460,9 @@\n elf)\n- -%3E int:%0A        if self.__hardness == %22HB%22:%0A            return 1%0A        elif self.__hardness == %222B%22:%0A            return 2%0A        elif self.__hardness == %224B%22:%0A            return 4%0A        elif self.__hardness == %226B%22:%0A            return 6%0A        return 0%0A%0A        def __str__(self) -%3E str:%0A            return f%22%5B%7Bself.__thickness%7D:%7Bself.__hardness%7D:%7Bself.__size%7D%5D%22%0A        %0A\n+:\n %0A   \n",
+            "lines": "20"
+        },
+        {
+            "label": "2025-11-12_11-04-29",
+            "content": "@@ -717,16 +717,20 @@\n turn 0%0A%0A\n+    \n     def \n@@ -743,32 +743,36 @@\n _(self) -%3E str:%0A\n+    \n         return f\n@@ -830,480 +830,18 @@\n %7D%5D%22%0A\n-%0A%0Aclass Pencil:%0A    def __init__(self, thickness: float):%0A        self.__thickness = thickness%0A        self.__tip = None%0A%0A%0Adef main():%0A    pencil = None%0A%0A    while True:%0A        line = input()%0A        print(f%22$%7Bline%7D%22)%0A        args = line.split()%0A%0A        if len(args) == 0:%0A            continue%0A%0A        cmd = args%5B0%5D%0A%0A        if cmd == %22end%22:%0A            break%0A%0A        elif cmd == %22init%22:%0A            pencil = Pencil(float(args%5B1%5D))%0A%0A%0Aif __name__ == %22__main__%22:%0A    main()%0A\n+        %0A%0A    \n",
+            "lines": "34"
+        },
+        {
+            "label": "2025-11-12_11-22-04",
+            "content": "class Lead:\n    def __init__(self, thickness: float, hardness: str, size: int):\n        self.__thickness = thickness\n        self.__hardness = hardness\n        self.__size = size\n\n    def getThickness(self) -> float:\n        return self.__thickness\n\n    def getHardness(self) -> str:\n        return self.__hardness\n\n    def getSize(self) -> int:\n        return self.__size\n\n    def setSize(self, size: int):\n        self.__size = size\n\n    def usagePerSheet(self) -> int:\n        if self.__hardness == \"HB\":\n            return 1\n        elif self.__hardness == \"2B\":\n            return 2\n        elif self.__hardness == \"4B\":\n            return 4\n        elif self.__hardness == \"6B\":\n            return 6\n        return 0\n\n    def __str__(self) -> str:\n        return f\"[{self.__thickness}:{self.__hardness}:{self.__size}]\"\n\n\nclass Pencil:\n    def __init__(self, thickness: float):\n        self.__thickness = thickness\n        self.__tip = None\n\n\ndef main():\n    pencil = None\n\n    while True:\n        line = input()\n        print(f\"${line}\")\n        args = line.split()\n\n        if len(args) == 0:\n            continue\n\n        cmd = args[0]\n\n        if cmd == \"end\":\n            break\n\n        elif cmd == \"init\":\n            pencil = Pencil(float(args[1]))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+            "lines": "61"
+        }
+    ]
+}
