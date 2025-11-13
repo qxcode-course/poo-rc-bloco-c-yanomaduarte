@@ -12,7 +12,7 @@ sources:
   type: clone
   branch: master
   cache_path: /home/yanduarte/poo-rc-bloco-c-yanomaduarte/myrep/.tko/cache/poo/Readme.md
-  cache_timestamp: '2025-11-12 20:33:26'
+  cache_timestamp: '2025-11-13 10:06:20'
   filters:
   - listas
 expanded:
@@ -28,4 +28,4 @@ flags:
   graph: 1
   xray: 0
 lang: py
-selected: poo@lapiseira
+selected: poo@pula-pula

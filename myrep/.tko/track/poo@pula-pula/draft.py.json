@@ -1,0 +1,9 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-13_11-10-55",
+            "content": "class Kid:\n    def __init__(self, age: int, name: str):\n        self.__age = age\n        self.__name = name\n\n    def getAge(self) -> int:\n        return self.__age\n    \n    def getName(self) -> str:\n        return self.__name\n\n    def __str__(self) -> str:\n        return {f\"{self.__name}:{self.__age}\"}\n\nclass Trampoline:\n    def __init__(self):\n        self.__waiting: list[Kid] = []\n        self.__playing: list[Kid] = []\n\n    def arrive(self, kid: Kid):\n        slef.__waiting.append(kid)\n\n    def enter(self):\n        ",
+            "lines": "24"
+        }
+    ]
+}
