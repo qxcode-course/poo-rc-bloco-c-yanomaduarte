@@ -1,0 +1,9 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-14_10-52-13",
+            "content": "class Cliente:\n    def __init__(self, id: str, phone: int):\n        self.__id = id\n        self.__phone = phone\n\n    def getPhone(self) -> int:\n        return self.__phone\n\n    def setPhone(self, phone: int):\n        self.__phone = phone\n\n    def getId(self) -> str:\n        return self.__id\n\n    def setId(self, id: str):\n        self.__id = id\n\n    def __str__(self) -> str:\n        return f\"[{self.__id}:{self.__phone}]\"\n\n\nclass Theater:\n    def __init__(self, capacity: int):\n        self.__capacity = capacity\n\n\ndef main():\n    theater = Theater()\n\n    while True:\n        line = input()\n        print(f\"${line}\")\n        args = line.split()\n\n        if len(args) == 0:\n            continue\n\n        cmd = args[0]\n\n        if cmd == \"end\":\n            break\n",
+            "lines": "41"
+        }
+    ]
+}
