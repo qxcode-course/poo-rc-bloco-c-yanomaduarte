@@ -16,7 +16,7 @@ class Client:
         self.__id = id
 
     def __str__(self) -> str:
-        return f"[{self.__id}:{self.__phone}]"
+        return f"{self.__id}:{self.__phone}"
 
 
 class Theater:
@@ -40,15 +40,14 @@ class Theater:
             return False
 
         if self.__seats[index] is not None:
-            print("fail: caideira ja esta ocupada")
+            print("fail: cadeira ja esta ocupada")
             return False
 
         if self.__search(id) != -1:
-            print(f"fail: cliente {id} ja esta no cinema")
+            print(f"fail: cliente ja esta no cinema")
             return False
 
-        new_client = Client(id, phone)
-        self.__seats[index] = new_client
+        self.__seats[index] = Client(id, phone)
         return True
 
     def cancel(self, id: str):
@@ -63,21 +62,22 @@ class Theater:
         return self.__seats
 
     def toString(self):
-        seat_strings = []
+        if not self.__seats:
+            return "[]"
+        parts = []
         for client in self.__seats:
             if client is None:
-                seat_strings.append("-")
+                parts.append("-")
             else:
-                seat_strings.append(str(client))
-
-        return "[ " + " ".join(seat_strings) + " ]"
+                parts.append(str(client))
+        return "[" + " ".join(parts) + "]"
 
     def __str__(self) -> str:
         return self.toString()
 
 
 def main():
-    theater = None
+    theater = Theater(0)
 
     while True:
         line = input()
